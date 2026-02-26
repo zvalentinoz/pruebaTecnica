@@ -1,0 +1,9 @@
+package com.msc_products.repositorio;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.msc_products.infraestructura.entidad.ProductosEntity;
+o
+public interface ProductoRepository  extends JpaRepository<ProductosEntity, Long> {} {
+
+}

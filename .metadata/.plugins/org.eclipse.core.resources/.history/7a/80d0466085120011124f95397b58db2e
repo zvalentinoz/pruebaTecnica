@@ -1,0 +1,58 @@
+package com.mcs_discount.servicio;
+
+import org.springframework.stereotype.Service;
+
+import com.mcs_discount.clientes.ProductoCliente;
+import com.mcs_discount.dominio.modelo.Descuento;
+import com.mcs_discount.repositorio.DescuentoRepositorio;
+
+import reactor.core.publisher.Mono;
+
+@Service
+public class DescuentoServicio {
+
+	 private final ProductoCliente client;
+	    private final DescuentoRepositorio repository;
+
+	 public DescuentoServicio(ProductoCliente client,DescuentoRepositorio repository) {
+	        this.client = client;
+	        this.repository = repository;
+	    }
+
+	    public Mono<Descuento> calculateDiscount(Long productoId) {
+
+	        return client.ObtenerProducto(productoId)
+
+	                .map(product -> {
+
+	                    Double discounted =
+	                            product.price() > 100
+	                                    ? product.price() * 0.9
+	                                    : product.price() * 0.95;
+
+	                    return new DiscountEntity(
+	                            productId,
+	                            product.price(),
+	                            discounted
+	                    );
+	                })
+
+	                .map(repository::save)
+
+	                .map(entity -> new Discount(
+	                        entity.getId(),
+	                        entity.getProductId(),
+	                        entity.getOriginalPrice(),
+	                        entity.getDiscountedPrice()
+	                ))
+
+	                .onErrorResume(e ->
+	                        Mono.error(
+	                                new DiscountException(
+	                                        "Error procesando descuento"
+	                                )
+	                        )
+	                );
+	    }
+	
+}

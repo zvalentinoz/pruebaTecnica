@@ -1,0 +1,13 @@
+package com.mcs_discount.dominio.excepcion;
+
+public class ExcepcionDescuento extends RuntimeException {
+
+	public ExcepcionDescuento(String message) {
+        super(message);
+    }
+
+    public ExcepcionDescuento(String message, Throwable cause) {
+        super(message, cause);
+    }
+	
+}

@@ -1,0 +1,5 @@
+package com.mcs_discount.dominio.modelo;
+
+public class Descuento {
+
+}

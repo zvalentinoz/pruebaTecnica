@@ -1,0 +1,31 @@
+package com.mcs_discount.controlador;
+
+
+import com.example.msdiscount.dto.DiscountRequest;
+import com.example.msdiscount.dto.DiscountResponse;
+import com.example.msdiscount.service.DiscountService;
+import com.mcs_discount.servicio.DescuentoServicio;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/discuento")
+public class DescuentoControlador {
+
+    private final DescuentoServicio discuentServicio;
+
+    @PostMapping("/calculate")
+    public Mono<ResponseEntity<DescuentoRespuesta> > calculateDiscount(
+            @Valid @RequestBody DiscountRequest request) {
+
+        return discountService.calculateDiscount(request)
+                .map(ResponseEntity::ok)
+                .onErrorResume(ex ->
+                        Mono.just(ResponseEntity.badRequest().build()));
+    }
+}

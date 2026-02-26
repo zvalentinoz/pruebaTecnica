@@ -1,0 +1,8 @@
+	package com.mcs_discount.dominio.modelo;
+
+	public record Descuento(
+	        Long id,
+	        Long productId,
+	        Double originalPrice,
+	        Double discountedPrice
+	) {}

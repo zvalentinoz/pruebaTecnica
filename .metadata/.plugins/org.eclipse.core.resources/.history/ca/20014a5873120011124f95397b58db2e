@@ -1,0 +1,33 @@
+package com.msc_products;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import com.msc_products.infraestructura.entidad.ProductosEntity;
+import com.msc_products.repositorio.ProductoRepository;
+
+@ExtendWith(MockitoExtension.class)
+class ProductoServiciotTest{
+
+    @Mock
+    private ProductoRepository repository;
+
+    @InjectMocks
+    private ProductoServicio service;
+
+    @Test
+    void shouldReturnProduct() {
+
+        ProductosEntity entity =
+                new ProductosEntity("Laptop",1500.0);
+
+        when(repository.findById(1L))
+                .thenReturn(Optional.of(entity));
+
+        Product result = service.getById(1L);
+
+        assertThat(result.name()).isEqualTo("Laptop");
+    }
+}

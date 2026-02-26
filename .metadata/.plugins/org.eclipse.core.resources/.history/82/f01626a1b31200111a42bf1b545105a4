@@ -1,0 +1,10 @@
+package com.msc_products.dominio.modelo.dto;
+
+public record ProductoPeticion(
+
+        @NotBlank
+        String nombre,
+
+        @NotNull
+        BigDecimal price
+) {}

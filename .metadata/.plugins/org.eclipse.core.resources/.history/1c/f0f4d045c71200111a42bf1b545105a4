@@ -1,0 +1,10 @@
+package com.mcs_discount.dominio.dto;
+
+import java.math.BigDecimal;
+
+@Schema(description = "Respuesta del cálculo de descuento")
+public record DescuentoRespuesta(
+		BigDecimal precioOriginal,
+        BigDecimal montoDescontado,
+        BigDecimal precioFinal
+		) {}

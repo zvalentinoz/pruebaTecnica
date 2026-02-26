@@ -1,0 +1,9 @@
+package com.mcs_discount.dominio.dto;
+
+import java.math.BigDecimal;
+
+public record DescuentoRespuesta(
+		BigDecimal precioOriginal,
+        BigDecimal montoDescontado,
+        BigDecimal precioFinal
+		) {}

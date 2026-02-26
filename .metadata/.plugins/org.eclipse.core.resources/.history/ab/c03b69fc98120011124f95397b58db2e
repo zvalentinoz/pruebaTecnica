@@ -1,0 +1,61 @@
+package com.mcs_discount.infraestructura.entidad;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "discounts")
+public class DescuentoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long productoId;
+    private BigDecimal precioOriginal;
+    private BigDecimal descuentoPrecio;
+
+    protected DescuentoEntity() {}
+
+    public DescuentoEntity(Long productoId,BigDecimal precioOriginal,BigDecimal descuentoPrecio) {
+        this.productoId = productoId;
+        this.precioOriginal = precioOriginal;
+        this.descuentoPrecio = descuentoPrecio;
+    }
+    
+    
+
+    public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setProductoId(Long productoId) {
+		this.productoId = productoId;
+	}
+
+	public void setPrecioOriginal(BigDecimal precioOriginal) {
+		this.precioOriginal = precioOriginal;
+	}
+
+	public void setDescuentoPrecio(BigDecimal descuentoPrecio) {
+		this.descuentoPrecio = descuentoPrecio;
+	}
+
+	public Long getId() {
+    	return id;
+    	}
+    public Long getProductoId() {
+    	return productoId;
+    	}
+    public BigDecimal getPrecioOriginal() {
+    	return precioOriginal;
+    	}
+    public BigDecimal getDescuentoPrecio() {
+    	return descuentoPrecio;
+    	}
+}

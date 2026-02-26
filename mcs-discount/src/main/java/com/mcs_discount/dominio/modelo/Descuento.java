@@ -1,0 +1,10 @@
+	package com.mcs_discount.dominio.modelo;
+
+import java.math.BigDecimal;
+
+public record Descuento(
+		 	Long id,
+	        Long productoId,
+	        BigDecimal precioOriginal,
+	        BigDecimal precioFinal
+) {  }

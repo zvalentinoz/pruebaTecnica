@@ -1,0 +1,43 @@
+package com.msc_products;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.msc_products.dominio.modelo.Producto;
+import com.msc_products.infraestructura.entidad.ProductosEntity;
+import com.msc_products.repositorio.ProductoRepository;
+import com.msc_products.servicios.ProductoServicio;
+
+@ExtendWith(MockitoExtension.class)
+class ProductoServiciotTest{
+
+    @Mock
+    private ProductoRepository repository;
+
+    @InjectMocks
+    private ProductoServicio service;
+
+    @Test
+    void shouldReturnProduct() {
+
+        ProductosEntity entity =
+                new ProductosEntity("computadora",new BigDecimal("3000"));
+
+        
+        when(repository.findById(1L))
+                .thenReturn(Optional.of(entity));
+
+        Producto resultado = service.ObtenerPorId(1L);
+
+        assertThat(resultado.nombre()).isEqualTo("computadora");
+    }
+}

@@ -1,0 +1,20 @@
+package com.mcs_discount.clientes;
+
+@Component
+public class ProductCliente {
+
+    private final WebClient webClient;
+
+    public ProductClient(WebClient.Builder builder) {
+        this.webClient = builder
+                .baseUrl("http://localhost:8081")
+                .build();
+    }
+
+    public Mono<ProductResponse> getProduct(Long id) {
+        return webClient.get()
+                .uri("/products/{id}", id)
+                .retrieve()
+                .bodyToMono(ProductResponse.class);
+    }
+}

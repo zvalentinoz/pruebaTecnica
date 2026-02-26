@@ -1,0 +1,58 @@
+package com.mcs_discount;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.mcs_discount.clientes.ProductoCliente;
+import com.mcs_discount.dominio.dto.ProductoRespuesta;
+import com.mcs_discount.infraestructura.entidad.DescuentoEntity;
+import com.mcs_discount.repositorio.DescuentoRepositorio;
+import com.mcs_discount.servicio.DescuentoServicio;
+
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
+
+@ExtendWith(MockitoExtension.class)
+class DescuentoServicioTest {
+
+    @Mock
+    private ProductoCliente cliente;
+
+    @Mock
+    private DescuentoRepositorio repository;
+
+    @InjectMocks
+    private DescuentoServicio servicio;
+
+    @Test
+    void CalcularDescuentoRetorno() {
+
+        ProductoRespuesta response =
+                new ProductoRespuesta(1L,"Laptop", new BigDecimal("3000"));
+        
+        DescuentoEntity entityGuardada = new DescuentoEntity(
+                1L,
+                new BigDecimal("3000"),
+                new BigDecimal("2700.00") // 3000 * 0.9
+        );
+
+        when(cliente.ObtenerProducto(1L))
+                .thenReturn(Mono.just(response));
+
+        when(repository.save(any(DescuentoEntity.class)))
+                .thenReturn(entityGuardada); // ← retorna la entidad directamente, no Mono
+
+        StepVerifier.create(servicio.calcularDescuento(1L))
+                .expectNextMatches(d ->
+                        d.PrecioDescuento().compareTo(new BigDecimal("2700.00")) == 0)
+                .verifyComplete();
+    
+}

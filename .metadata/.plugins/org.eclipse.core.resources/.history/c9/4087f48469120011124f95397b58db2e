@@ -1,0 +1,5 @@
+package com.msc_products.infraestructura.entidad;
+
+public class ProductosEntity {
+
+}

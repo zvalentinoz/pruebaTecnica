@@ -1,0 +1,25 @@
+package com.msc_products;
+
+@ExtendWith(MockitoExtension.class)
+class ProductoServiciotTest{
+
+    @Mock
+    private ProductRepository repository;
+
+    @InjectMocks
+    private ProductService service;
+
+    @Test
+    void shouldReturnProduct() {
+
+        ProductEntity entity =
+                new ProductEntity("Laptop",1500.0);
+
+        when(repository.findById(1L))
+                .thenReturn(Optional.of(entity));
+
+        Product result = service.getById(1L);
+
+        assertThat(result.name()).isEqualTo("Laptop");
+    }
+}

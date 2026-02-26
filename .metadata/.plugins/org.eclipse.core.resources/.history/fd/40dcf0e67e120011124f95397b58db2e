@@ -1,0 +1,29 @@
+package com.mcs_discount.infraestructura.entidad;
+
+@Entity
+@Table(name = "discounts")
+public class DescuentoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long productId;
+    private Double originalPrice;
+    private Double discountedPrice;
+
+    protected DiscountEntity() {}
+
+    public DiscountEntity(Long productId,
+                          Double originalPrice,
+                          Double discountedPrice) {
+        this.productId = productId;
+        this.originalPrice = originalPrice;
+        this.discountedPrice = discountedPrice;
+    }
+
+    public Long getId() { return id; }
+    public Long getProductId() { return productId; }
+    public Double getOriginalPrice() { return originalPrice; }
+    public Double getDiscountedPrice() { return discountedPrice; }
+}

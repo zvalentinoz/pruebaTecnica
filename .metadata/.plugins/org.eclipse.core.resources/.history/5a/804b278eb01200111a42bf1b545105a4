@@ -1,0 +1,32 @@
+package com.mcs_discount.controlador;
+
+
+import com.example.msdiscount.dto.DiscountRequest;
+import com.example.msdiscount.dto.DiscountResponse;
+import com.example.msdiscount.service.DiscountService;
+import com.mcs_discount.dominio.dto.DescuentoRespuesta;
+import com.mcs_discount.dominio.modelo.Descuento;
+import com.mcs_discount.servicio.DescuentoServicio;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/discuento")
+public class DescuentoControlador {
+
+    private final DescuentoServicio descuentoServicio;
+
+    @GetMapping("/{productId}")
+    public Mono<ResponseEntity<Descuento >> obtenerDescuento(
+            @PathVariable Long productId) {
+
+        return descuentoServicio.calcularDescuento(productId)
+                .map(ResponseEntity::ok);
+    }
+    
+}

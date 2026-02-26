@@ -1,0 +1,17 @@
+package com.mcs_discount.dominio.dto;
+
+import java.math.BigDecimal;
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
+public record DescuentoPeticion (
+
+	@NotNull
+    BigDecimal price,
+
+    @NotNull
+    @Min(0)
+    Integer percentage
+	) {}
+

@@ -1,0 +1,15 @@
+package com.msc_products.dominio.modelo.dto;
+
+import java.math.BigDecimal;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record ProductoPeticion(
+
+        @NotBlank
+        String nombre,
+
+        @NotNull
+        BigDecimal precio
+) {}

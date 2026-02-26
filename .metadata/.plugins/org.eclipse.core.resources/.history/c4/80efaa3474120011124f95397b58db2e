@@ -1,0 +1,32 @@
+package com.msc_products;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.reactive.server.WebTestClient;
+
+import com.msc_products.controladores.ProductoControlador;
+import com.msc_products.servicios.ProductoServicio;
+
+@WebFluxTest(ProductoControlador.class)
+	class ProductoControladorTest {
+
+	    @Autowired
+	    private WebTestClient webTestClient;
+
+	    @MockBean
+	    private ProductoServicio servicio;
+
+	    @Test
+	    void shouldReturnProduct() {
+
+	        when(servicio.getById(1L))
+	                .thenReturn(new Producto(1L,"Laptop",1000.0));
+
+	        webTestClient.get()
+	                .uri("/products/1")
+	                .exchange()
+	                .expectStatus().isOk();
+	    }
+	}

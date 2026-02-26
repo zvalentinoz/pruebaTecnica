@@ -1,0 +1,17 @@
+package com.msc_products.controladores;
+
+@RestController
+@RequestMapping("/products")
+public class ProductoControlador {
+
+    private final ProductService service;
+
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/{id}")
+    public Mono<Product> getProduct(@PathVariable Long id) {
+        return Mono.fromSupplier(() -> service.getById(id));
+    }
+}
