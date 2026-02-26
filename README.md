@@ -1,4 +1,4 @@
-#  Proyecto Microservicios: Productos y Descuentos
+#  Proyecto Microservicios: Productos y Descuentos - 
 
 Este proyecto contiene **dos microservicios** que se comunican entre sí:
 
@@ -99,7 +99,7 @@ GET	/api/descuentos/{id}	-	DescuentoRespuesta	Calcula el descuento de un product
 
 ---
 
-## ⚙ Configuración de dependencias (pom.xml)
+##  Configuración de dependencias (pom.xml)
 
 - Spring Boot WebFlux
 - Spring Data JPA
@@ -115,7 +115,7 @@ GET	/api/descuentos/{id}	-	DescuentoRespuesta	Calcula el descuento de un product
 
 ### productos
 
-```bash
+``` bash
 cd msc_products
 mvn clean install
 mvn spring-boot:run
