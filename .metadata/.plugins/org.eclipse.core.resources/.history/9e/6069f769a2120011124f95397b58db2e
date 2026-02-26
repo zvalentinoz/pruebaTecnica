@@ -1,7 +1,0 @@
-package com.mcs_discount.dominio.dto;
-
-public record DescuentoRespuesta(
-		BigDecimal originalPrice,
-        BigDecimal discountAmount,
-        BigDecimal finalPrice
-		) {}

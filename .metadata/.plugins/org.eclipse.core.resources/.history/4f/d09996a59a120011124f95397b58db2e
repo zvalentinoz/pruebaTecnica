@@ -1,9 +1,0 @@
-package com.mcs_discount.dominio.dto;
-
-// respuesta del Producto  mediate un dto evitamos acoplamiento  
-public record ProductoRespuesta( 
-		    Long id,
-	        String name,
-	        BigDecimal price
-		) 
-{ }

@@ -1,5 +1,0 @@
-package com.mcs_discount.repositorio;
-
-public interface DescuentoRepositorio {
-
-}

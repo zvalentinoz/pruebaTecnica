@@ -1,7 +1,0 @@
-package com.mcs_discount.repositorio;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface DescuentoRepositorio extends JpaRepository<Descuento, ID> {
-
-}

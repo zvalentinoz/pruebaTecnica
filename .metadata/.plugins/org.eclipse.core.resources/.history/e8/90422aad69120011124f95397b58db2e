@@ -1,7 +1,0 @@
-package com.msc_products.dominio.modelo;
-
-public record Product(
-        Long id,
-        String name,
-        Double price
-) {}

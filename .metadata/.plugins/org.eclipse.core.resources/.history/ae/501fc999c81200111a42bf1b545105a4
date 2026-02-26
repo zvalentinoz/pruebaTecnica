@@ -1,9 +1,0 @@
-package com.msc_products.dominio.modelo.dto;
-
-import java.math.BigDecimal;
-
-public record ProductoRespuesta(
-        Long id,
-        String nombre,
-        BigDecimal precio
-) {}

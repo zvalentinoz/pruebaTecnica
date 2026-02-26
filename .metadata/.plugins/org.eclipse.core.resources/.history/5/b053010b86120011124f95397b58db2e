@@ -1,5 +1,0 @@
-package com.mcs_discount.dominio.excepcion;
-
-public class ExcepcionDescuento {
-
-}
